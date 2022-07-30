@@ -1,6 +1,7 @@
-package br.com.forum.modelo;
+package br.com.forum.model;
 
-public enum StatusTopico {
+public enum TopicState
+{
 	
 	NAO_RESPONDIDO,
 	NAO_SOLUCIONADO,

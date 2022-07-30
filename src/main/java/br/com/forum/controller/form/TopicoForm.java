@@ -1,13 +1,13 @@
 package br.com.forum.controller.form;
 
-import br.com.forum.repository.CursoRepository;
+import br.com.forum.repository.CourseRepository;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
-import br.com.forum.modelo.Curso;
-import br.com.forum.modelo.Topico;
+import br.com.forum.model.Curso;
+import br.com.forum.model.Topic;
 
 public class TopicoForm {
 
@@ -44,9 +44,9 @@ public class TopicoForm {
 		this.nomeCurso = nomeCurso;
 	}
 
-	public Topico converter(CursoRepository cursoRepository) {
-		Curso curso = cursoRepository.findByNome(nomeCurso);
-		return new Topico(titulo, mensagem, curso);
+	public Topic converter(CourseRepository courseRepository) {
+		Curso curso = courseRepository.findByNome(nomeCurso);
+		return new Topic(titulo, mensagem, curso);
 	}
 
 }

@@ -1,11 +1,12 @@
-package br.com.forum.config.validacao;
+package br.com.forum.config.validation;
 
-public class ErroDeFormularioDto {
+public class FormErrorDto
+{
 	
 	private String campo;
 	private String erro;
 	
-	public ErroDeFormularioDto(String campo, String erro) {
+	public FormErrorDto(String campo, String erro) {
 		this.campo = campo;
 		this.erro = erro;
 	}

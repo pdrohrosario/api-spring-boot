@@ -1,20 +1,20 @@
-package br.com.forum.controller.dto;
+package br.com.forum.model.dto;
 
-import br.com.forum.modelo.Resposta;
+import br.com.forum.model.Answer;
 import java.time.LocalDateTime;
 
-public class RespostaDto
+public class AnswerDto
 {
 	private Long id;
 	private String mensagem;
 	private LocalDateTime dataCriacao;
 	private String nomeAutor;
 
-	public RespostaDto(Resposta resposta){
-		this.id = resposta.getId();
-		this.mensagem = resposta.getMensagem();
-		this.dataCriacao = resposta.getDataCriacao();
-		this.nomeAutor = resposta.getAutor().getNome();
+	public AnswerDto(Answer answer){
+		this.id = answer.getId();
+		this.mensagem = answer.getMensagem();
+		this.dataCriacao = answer.getDataCriacao();
+		this.nomeAutor = answer.getAutor().getNome();
 	}
 
 	public Long getId()

@@ -1,12 +1,12 @@
 package br.com.forum.controller.form;
 
-import br.com.forum.modelo.Topico;
-import br.com.forum.repository.TopicoRepository;
+import br.com.forum.model.Topic;
+import br.com.forum.repository.TopicRepository;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 
-public class AtualizacaoTopicoForm
+public class UpdateTopicForm
 {
 
 	@NotNull @NotEmpty @Length(min = 5)
@@ -35,11 +35,11 @@ public class AtualizacaoTopicoForm
 		this.mensagem = mensagem;
 	}
 
-	public Topico atualizar(Long id, TopicoRepository topicoRepository)
+	public Topic atualizar(Long id, TopicRepository topicRepository)
 	{
-		Topico topico = topicoRepository.getOne(id);
-		topico.setTitulo(this.titulo);
-		topico.setMensagem(this.mensagem);
-		return topico;
+		Topic topic = topicRepository.getOne(id);
+		topic.setTitulo(this.titulo);
+		topic.setMensagem(this.mensagem);
+		return topic;
 	}
 }

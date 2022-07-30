@@ -1,4 +1,4 @@
-package br.com.forum.modelo;
+package br.com.forum.model;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -14,7 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Topico {
+public class Topic
+{
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -22,18 +23,18 @@ public class Topico {
 	private String mensagem;
 	private LocalDateTime dataCriacao = LocalDateTime.now();
 	@Enumerated(EnumType.STRING)
-	private StatusTopico status = StatusTopico.NAO_RESPONDIDO;
+	private TopicState status = TopicState.NAO_RESPONDIDO;
 	@ManyToOne
-	private Usuario autor;
+	private User autor;
 	@ManyToOne
 	private Curso curso;
 	@OneToMany(mappedBy = "topico")
-	private List<Resposta> respostas = new ArrayList<>();
+	private List<Answer> answers = new ArrayList<>();
 	
-	public Topico() {
+	public Topic() {
 	}
 	
-	public Topico(String titulo, String mensagem, Curso curso) {
+	public Topic(String titulo, String mensagem, Curso curso) {
 		this.titulo = titulo;
 		this.mensagem = mensagem;
 		this.curso = curso;
@@ -55,7 +56,7 @@ public class Topico {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Topico other = (Topico) obj;
+		Topic other = (Topic) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -96,19 +97,19 @@ public class Topico {
 		this.dataCriacao = dataCriacao;
 	}
 
-	public StatusTopico getStatus() {
+	public TopicState getStatus() {
 		return status;
 	}
 
-	public void setStatus(StatusTopico status) {
+	public void setStatus(TopicState status) {
 		this.status = status;
 	}
 
-	public Usuario getAutor() {
+	public User getAutor() {
 		return autor;
 	}
 
-	public void setAutor(Usuario autor) {
+	public void setAutor(User autor) {
 		this.autor = autor;
 	}
 
@@ -120,12 +121,12 @@ public class Topico {
 		this.curso = curso;
 	}
 
-	public List<Resposta> getRespostas() {
-		return respostas;
+	public List<Answer> getRespostas() {
+		return answers;
 	}
 
-	public void setRespostas(List<Resposta> respostas) {
-		this.respostas = respostas;
+	public void setRespostas(List<Answer> answers) {
+		this.answers = answers;
 	}
 
 }
