@@ -1,4 +1,4 @@
-package br.com.forum.model;
+package com.forum.model;
 
 public enum TopicState
 {

@@ -1,27 +1,24 @@
-package br.com.forum.controller;
+package com.forum.controller;
 
-import br.com.forum.model.dto.TopicDetailDto;
-import br.com.forum.controller.form.UpdateTopicForm;
-import br.com.forum.repository.CourseRepository;
+import com.forum.controller.form.TopicForm;
+import com.forum.controller.form.UpdateTopicForm;
+import com.forum.model.Topic;
+import com.forum.model.dto.TopicDetailDto;
+import com.forum.model.dto.TopicDto;
+import com.forum.repository.CourseRepository;
+import com.forum.repository.TopicRepository;
 import java.net.URI;
 import java.util.List;
-
 import java.util.Optional;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import br.com.forum.model.dto.TopicDto;
-import br.com.forum.controller.form.TopicoForm;
-import br.com.forum.model.Topic;
-import br.com.forum.repository.TopicRepository;
-
 @RestController
-@RequestMapping("/topicos")
+@RequestMapping("/topics")
 public class TopicController
 {
 	
@@ -32,19 +29,19 @@ public class TopicController
 	private CourseRepository courseRepository;
 	
 	@GetMapping
-	public List<TopicDto> lista(String nomeCurso) {
-		if (nomeCurso == null) {
-			List<Topic> topics = topicRepository.findAll();
-			return TopicDto.converter(topics);
+	public List<TopicDto> list(String nameCourse, int Page, int size) {
+		List<Topic> topics;
+		if (nameCourse == null) {
+			topics = topicRepository.findAll();
 		} else {
-			List<Topic> topics = topicRepository.findByCursoNome(nomeCurso);
-			return TopicDto.converter(topics);
+			topics = topicRepository.findByCursoNome(nameCourse);
 		}
+		return TopicDto.converter(topics);
 	}
 	
 	@PostMapping
 	@Transactional
-	public ResponseEntity<TopicDto> cadastrar(@RequestBody @Valid TopicoForm form, UriComponentsBuilder uriBuilder) {
+	public ResponseEntity<TopicDto> create(@RequestBody @Valid TopicForm form, UriComponentsBuilder uriBuilder) {
 		Topic topic = form.converter(courseRepository);
 		topicRepository.save(topic);
 		
@@ -53,22 +50,19 @@ public class TopicController
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<TopicDetailDto> detalhar(@PathVariable Long id){
-		Optional<Topic> topico = topicRepository.findById(id);
-		if(topico.isPresent())
-		{
-			return ResponseEntity.ok(new TopicDetailDto(topico.get()));
-		}
-		return ResponseEntity.notFound().build();
+	public ResponseEntity<TopicDetailDto> search(@PathVariable Long id){
+		Optional<Topic> topic = topicRepository.findById(id);
+		return topic.map(value -> ResponseEntity.ok(new TopicDetailDto(value)))
+			.orElseGet(() -> ResponseEntity.notFound().build());
 	}
 
 	@PutMapping("/{id}")
 	@Transactional
-	public ResponseEntity<TopicDto> atualizar(@PathVariable Long id, @RequestBody @Valid UpdateTopicForm form){
+	public ResponseEntity<TopicDto> update(@PathVariable Long id, @RequestBody @Valid UpdateTopicForm form){
 		Optional<Topic> optional = topicRepository.findById(id);
 		if(optional.isPresent())
 		{
-			Topic topic = form.atualizar(id, topicRepository);
+			Topic topic = form.update(id, topicRepository);
 			return ResponseEntity.ok(new TopicDto(topic));
 		}
 		return ResponseEntity.notFound().build();
@@ -76,7 +70,7 @@ public class TopicController
 
 	@DeleteMapping("/{id}")
 	@Transactional
-	public ResponseEntity<?> remover(@PathVariable Long id){
+	public ResponseEntity<?> delete(@PathVariable Long id){
 		Optional<Topic> optional = topicRepository.findById(id);
 		if(optional.isPresent())
 		{

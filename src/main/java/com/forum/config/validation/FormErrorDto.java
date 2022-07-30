@@ -1,4 +1,4 @@
-package br.com.forum.config.validation;
+package com.forum.config.validation;
 
 public class FormErrorDto
 {

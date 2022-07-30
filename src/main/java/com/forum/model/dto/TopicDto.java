@@ -1,10 +1,10 @@
-package br.com.forum.model.dto;
+package com.forum.model.dto;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import br.com.forum.model.Topic;
+import com.forum.model.Topic;
 
 public class TopicDto
 {

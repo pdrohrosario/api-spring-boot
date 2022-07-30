@@ -1,4 +1,4 @@
-package br.com.forum.model;
+package com.forum.model;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -27,17 +27,17 @@ public class Topic
 	@ManyToOne
 	private User autor;
 	@ManyToOne
-	private Curso curso;
+	private Course course;
 	@OneToMany(mappedBy = "topico")
 	private List<Answer> answers = new ArrayList<>();
 	
 	public Topic() {
 	}
 	
-	public Topic(String titulo, String mensagem, Curso curso) {
+	public Topic(String titulo, String mensagem, Course course) {
 		this.titulo = titulo;
 		this.mensagem = mensagem;
-		this.curso = curso;
+		this.course = course;
 	}
 
 	@Override
@@ -113,12 +113,12 @@ public class Topic
 		this.autor = autor;
 	}
 
-	public Curso getCurso() {
-		return curso;
+	public Course getCurso() {
+		return course;
 	}
 
-	public void setCurso(Curso curso) {
-		this.curso = curso;
+	public void setCurso(Course course) {
+		this.course = course;
 	}
 
 	public List<Answer> getRespostas() {

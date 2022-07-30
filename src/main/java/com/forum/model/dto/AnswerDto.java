@@ -1,6 +1,6 @@
-package br.com.forum.model.dto;
+package com.forum.model.dto;
 
-import br.com.forum.model.Answer;
+import com.forum.model.Answer;
 import java.time.LocalDateTime;
 
 public class AnswerDto

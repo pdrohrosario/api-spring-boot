@@ -1,7 +1,7 @@
-package br.com.forum.model.dto;
+package com.forum.model.dto;
 
-import br.com.forum.model.TopicState;
-import br.com.forum.model.Topic;
+import com.forum.model.TopicState;
+import com.forum.model.Topic;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
