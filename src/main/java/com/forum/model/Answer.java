@@ -11,17 +11,15 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Answer
 {
-
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String mensagem;
-	
+	private String message;
 	@ManyToOne
 	private Topic topic;
-	private LocalDateTime dataCriacao = LocalDateTime.now();
+	private LocalDateTime createDate = LocalDateTime.now();
 	@ManyToOne
-	private User autor;
-	private Boolean solucao = false;
+	private User author;
+	private Boolean isSolution = false;
 
 	@Override
 	public int hashCode() {
@@ -56,44 +54,53 @@ public class Answer
 		this.id = id;
 	}
 
-	public String getMensagem() {
-		return mensagem;
+	public String getMessage()
+	{
+		return message;
 	}
 
-	public void setMensagem(String mensagem) {
-		this.mensagem = mensagem;
+	public void setMessage(String message)
+	{
+		this.message = message;
 	}
 
-	public Topic getTopico() {
+	public Topic getTopic()
+	{
 		return topic;
 	}
 
-	public void setTopico(Topic topic) {
+	public void setTopic(Topic topic)
+	{
 		this.topic = topic;
 	}
 
-	public LocalDateTime getDataCriacao() {
-		return dataCriacao;
+	public LocalDateTime getCreateDate()
+	{
+		return createDate;
 	}
 
-	public void setDataCriacao(LocalDateTime dataCriacao) {
-		this.dataCriacao = dataCriacao;
+	public void setCreateDate(LocalDateTime createDate)
+	{
+		this.createDate = createDate;
 	}
 
-	public User getAutor() {
-		return autor;
+	public User getAuthor()
+	{
+		return author;
 	}
 
-	public void setAutor(User autor) {
-		this.autor = autor;
+	public void setAuthor(User author)
+	{
+		this.author = author;
 	}
 
-	public Boolean getSolucao() {
-		return solucao;
+	public Boolean getSolution()
+	{
+		return isSolution;
 	}
 
-	public void setSolucao(Boolean solucao) {
-		this.solucao = solucao;
+	public void setSolution(Boolean solution)
+	{
+		isSolution = solution;
 	}
-
 }

@@ -6,15 +6,15 @@ import java.time.LocalDateTime;
 public class AnswerDto
 {
 	private Long id;
-	private String mensagem;
-	private LocalDateTime dataCriacao;
-	private String nomeAutor;
+	private String message;
+	private LocalDateTime createDate;
+	private String nameAuthor;
 
 	public AnswerDto(Answer answer){
 		this.id = answer.getId();
-		this.mensagem = answer.getMensagem();
-		this.dataCriacao = answer.getDataCriacao();
-		this.nomeAutor = answer.getAutor().getNome();
+		this.message = answer.getMessage();
+		this.createDate = answer.getCreateDate();
+		this.nameAuthor = answer.getAuthor().getName();
 	}
 
 	public Long getId()
@@ -22,18 +22,18 @@ public class AnswerDto
 		return id;
 	}
 
-	public String getMensagem()
+	public String getMessage()
 	{
-		return mensagem;
+		return message;
 	}
 
-	public LocalDateTime getDataCriacao()
+	public LocalDateTime getCreateDate()
 	{
-		return dataCriacao;
+		return createDate;
 	}
 
-	public String getNomeAutor()
+	public String getNameAuthor()
 	{
-		return nomeAutor;
+		return nameAuthor;
 	}
 }

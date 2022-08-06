@@ -13,6 +13,10 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -29,12 +33,13 @@ public class TopicController
 	private CourseRepository courseRepository;
 	
 	@GetMapping
-	public List<TopicDto> list(String nameCourse, int Page, int size) {
-		List<Topic> topics;
+	public Page<TopicDto> list(@RequestParam(required = false) String nameCourse, @RequestParam int page, @RequestParam int size, @RequestParam String ordenation) {
+		Page<Topic> topics;
+		Pageable pageable = PageRequest.of(page, size, Sort.Direction.ASC, ordenation);
 		if (nameCourse == null) {
-			topics = topicRepository.findAll();
+			topics = topicRepository.findAll(pageable);
 		} else {
-			topics = topicRepository.findByCursoNome(nameCourse);
+			topics = topicRepository.findByCourse(nameCourse , pageable);
 		}
 		return TopicDto.converter(topics);
 	}

@@ -1,24 +1,23 @@
 package com.forum.model.dto;
 
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import com.forum.model.Topic;
+import org.springframework.data.domain.Page;
 
 public class TopicDto
 {
 
 	private Long id;
-	private String titulo;
-	private String mensagem;
-	private LocalDateTime dataCriacao;
-	
+	private String title;
+	private String message;
+	private LocalDateTime createDate;
+
 	public TopicDto(Topic topic) {
 		this.id = topic.getId();
-		this.titulo = topic.getTitulo();
-		this.mensagem = topic.getMensagem();
-		this.dataCriacao = topic.getDataCriacao();
+		this.title = topic.getTitle();
+		this.message = topic.getMessage();
+		this.createDate = topic.getCreateDate();
 	}
 
 	public Long getId() {
@@ -26,19 +25,19 @@ public class TopicDto
 	}
 
 	public String getTitulo() {
-		return titulo;
+		return title;
 	}
 
-	public String getMensagem() {
-		return mensagem;
+	public String getMessage() {
+		return message;
 	}
 
-	public LocalDateTime getDataCriacao() {
-		return dataCriacao;
+	public LocalDateTime getCreateDate() {
+		return createDate;
 	}
 
-	public static List<TopicDto> converter(List<Topic> topics) {
-		return topics.stream().map(TopicDto::new).collect(Collectors.toList());
+	public static Page<TopicDto> converter(Page<Topic> topics) {
+		return topics.map(TopicDto::new);
 	}
 
 }

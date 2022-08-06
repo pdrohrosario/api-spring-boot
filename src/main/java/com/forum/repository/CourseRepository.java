@@ -6,6 +6,6 @@ import com.forum.model.Course;
 
 public interface CourseRepository extends JpaRepository<Course, Long> {
 
-	Course findByNome(String nome);
+	Course findByName(String name);
 
 }

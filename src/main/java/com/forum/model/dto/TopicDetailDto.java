@@ -10,22 +10,22 @@ import java.util.stream.Collectors;
 public class TopicDetailDto
 {
 	private Long id;
-	private String titulo;
-	private String mensagem;
-	private LocalDateTime dataCriacao;
-	private String nomeAutor;
-	private TopicState status;
-	private List<AnswerDto> respostas;
+	private String title;
+	private String message;
+	private LocalDateTime createDate;
+	private String nameAuthor;
+	private TopicState state;
+	private List<AnswerDto> answers;
 
 	public TopicDetailDto(Topic topic){
 		this.id = topic.getId();
-		this.titulo = topic.getTitulo();
-		this.mensagem = topic.getMensagem();
-		this.dataCriacao = topic.getDataCriacao();
-		this.nomeAutor = topic.getAutor().getNome();
-		this.status = topic.getStatus();
-		this.respostas = new ArrayList<>();
-		this.respostas.addAll(topic.getRespostas().stream().map(AnswerDto::new).collect(Collectors.toList()));
+		this.title = topic.getTitle();
+		this.message = topic.getMessage();
+		this.createDate = topic.getCreateDate();
+		this.nameAuthor = topic.getAuthor().getName();
+		this.state = topic.getState();
+		this.answers = new ArrayList<>();
+		this.answers.addAll(topic.getAnswers().stream().map(AnswerDto::new).collect(Collectors.toList()));
 	}
 
 	public Long getId()
@@ -33,33 +33,68 @@ public class TopicDetailDto
 		return id;
 	}
 
-	public String getTitulo()
+	public void setId(Long id)
 	{
-		return titulo;
+		this.id = id;
 	}
 
-	public String getMensagem()
+	public String getTitle()
 	{
-		return mensagem;
+		return title;
 	}
 
-	public LocalDateTime getDataCriacao()
+	public void setTitle(String title)
 	{
-		return dataCriacao;
+		this.title = title;
 	}
 
-	public String getNomeAutor()
+	public String getMessage()
 	{
-		return nomeAutor;
+		return message;
 	}
 
-	public TopicState getStatus()
+	public void setMessage(String message)
 	{
-		return status;
+		this.message = message;
 	}
 
-	public List<AnswerDto> getRespostas()
+	public LocalDateTime getCreateDate()
 	{
-		return respostas;
+		return createDate;
+	}
+
+	public void setCreateDate(LocalDateTime createDate)
+	{
+		this.createDate = createDate;
+	}
+
+	public String getNameAuthor()
+	{
+		return nameAuthor;
+	}
+
+	public void setNameAuthor(String nameAuthor)
+	{
+		this.nameAuthor = nameAuthor;
+	}
+
+	public TopicState getState()
+	{
+		return state;
+	}
+
+	public void setState(TopicState state)
+	{
+		this.state = state;
+	}
+
+	public List<AnswerDto> getAnswers()
+	{
+		return answers;
+	}
+
+	public void setAnswers(List<AnswerDto> answers)
+	{
+		this.answers = answers;
 	}
 }

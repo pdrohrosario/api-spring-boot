@@ -11,8 +11,8 @@ public class Course
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String nome;
-	private String categoria;
+	private String name;
+	private String category;
 	
 	@Override
 	public int hashCode() {
@@ -39,28 +39,34 @@ public class Course
 		return true;
 	}
 
-	public Long getId() {
+
+	public Long getId()
+	{
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Long id)
+	{
 		this.id = id;
 	}
 
-	public String getNome() {
-		return nome;
+	public String getName()
+	{
+		return name;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setName(String name)
+	{
+		this.name = name;
 	}
 
-	public String getCategoria() {
-		return categoria;
+	public String getCategory()
+	{
+		return category;
 	}
 
-	public void setCategoria(String categoria) {
-		this.categoria = categoria;
+	public void setCategory(String category)
+	{
+		this.category = category;
 	}
-
 }

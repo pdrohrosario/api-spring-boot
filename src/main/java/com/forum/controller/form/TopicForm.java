@@ -52,7 +52,7 @@ public class TopicForm
 	}
 
 	public Topic converter(CourseRepository courseRepository) {
-		Course course = courseRepository.findByNome(nameCourse);
+		Course course = courseRepository.findByName(nameCourse);
 		return new Topic(title, message, course);
 	}
 

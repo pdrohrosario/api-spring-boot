@@ -3,22 +3,22 @@ package com.forum.config.validation;
 public class FormErrorDto
 {
 	
-	private String campo;
-	private String erro;
-	
-	public FormErrorDto(String campo, String erro) {
-		this.campo = campo;
-		this.erro = erro;
+	private String field;
+	private String error;
+
+	public FormErrorDto(String field, String error)
+	{
+		this.field = field;
+		this.error = error;
 	}
 
-	public String getCampo() {
-		return campo;
+	public String getField()
+	{
+		return field;
 	}
 
-	public String getErro() {
-		return erro;
+	public String getError()
+	{
+		return error;
 	}
-	
-	
-
 }

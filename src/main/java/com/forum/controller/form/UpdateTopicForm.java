@@ -37,8 +37,8 @@ public class UpdateTopicForm
 	public Topic update(Long id, TopicRepository topicRepository)
 	{
 		Topic topic = topicRepository.getOne(id);
-		topic.setTitulo(this.title);
-		topic.setMensagem(this.message);
+		topic.setTitle(this.title);
+		topic.setMessage(this.message);
 		return topic;
 	}
 }
