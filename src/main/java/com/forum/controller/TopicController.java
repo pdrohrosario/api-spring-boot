@@ -12,6 +12,8 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -32,6 +34,7 @@ public class TopicController
 	private CourseRepository courseRepository;
 
 	@GetMapping
+	@Cacheable(value="listTopics")
 	public Page<TopicDto> list(@RequestParam(required = false) String nameCourse, @PageableDefault(sort = "id", direction = Sort.Direction.ASC) Pageable pageable)
 	{
 		Page<Topic> topics;
@@ -48,6 +51,7 @@ public class TopicController
 
 	@PostMapping
 	@Transactional
+	@CacheEvict(value="listTopics", allEntries = true)
 	public ResponseEntity<TopicDto> create(@RequestBody @Valid TopicForm form,
 		UriComponentsBuilder uriBuilder)
 	{
@@ -68,6 +72,7 @@ public class TopicController
 
 	@PutMapping("/{id}")
 	@Transactional
+	@CacheEvict(value="listTopics", allEntries = true)
 	public ResponseEntity<TopicDto> update(@PathVariable Long id,
 		@RequestBody @Valid UpdateTopicForm form)
 	{
@@ -82,6 +87,7 @@ public class TopicController
 
 	@DeleteMapping("/{id}")
 	@Transactional
+	@CacheEvict(value="listTopics", allEntries = true)
 	public ResponseEntity<?> delete(@PathVariable Long id)
 	{
 		Optional<Topic> optional = topicRepository.findById(id);

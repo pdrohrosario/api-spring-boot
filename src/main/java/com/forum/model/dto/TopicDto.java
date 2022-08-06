@@ -20,19 +20,23 @@ public class TopicDto
 		this.createDate = topic.getCreateDate();
 	}
 
-	public Long getId() {
+	public Long getId()
+	{
 		return id;
 	}
 
-	public String getTitulo() {
+	public String getTitle()
+	{
 		return title;
 	}
 
-	public String getMessage() {
+	public String getMessage()
+	{
 		return message;
 	}
 
-	public LocalDateTime getCreateDate() {
+	public LocalDateTime getCreateDate()
+	{
 		return createDate;
 	}
 
